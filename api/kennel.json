@@ -1,0 +1,73 @@
+{
+  "animals": [
+    {
+      "id": 1,
+      "name": "Doodles",
+      "breed": "German Shepherd",
+      "employeeId": 2
+    },
+    {
+      "id": 2,
+      "name": "Jack",
+      "breed": "Cocker Spaniel",
+      "employeeId": 3
+    },
+    {
+      "id": 3,
+      "name": "Angus",
+      "breed": "Dalmatian",
+      "employeeId": 2
+    },
+    {
+      "id": 4,
+      "name": "Henley",
+      "breed": "Carolina Retriever",
+      "employeeId": 1
+    },
+    {
+      "name": "Mason",
+      "breed": "Lhasa Apso",
+      "employeeId": 3,
+      "id": 5
+    },
+    {
+      "name": "Esmy",
+      "breed": "Pit Bull",
+      "employeeId": 2,
+      "id": 6
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "name": "Jessica Younker"
+    },
+    {
+      "id": 2,
+      "name": "Jordan Nelson"
+    },
+    {
+      "id": 3,
+      "name": "Zoe LeBlanc"
+    },
+    {
+      "id": 4,
+      "name": "Blaise Roberts"
+    },
+    {
+      "id": 5,
+      "name": "Blair McMillan"
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "name": "Nashville North"
+    },
+    {
+      "id": 2,
+      "name": "Nashville South"
+    }
+  ]
+}
+
