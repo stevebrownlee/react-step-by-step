@@ -1,13 +1,14 @@
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from "react-router-dom"
 import React, { Component } from "react"
-import AnimalList from './animal/AnimalList'
-import AnimalDetail from './animal/AnimalDetail'
-import AnimalForm from './animal/AnimalForm'
-import LocationList from './location/LocationList'
-import EmployeeList from './employee/EmployeeList'
+import AnimalList from "./animal/AnimalList"
+import AnimalDetail from "./animal/AnimalDetail"
+import AnimalForm from "./animal/AnimalForm"
+import LocationList from "./location/LocationList"
+import EmployeeList from "./employee/EmployeeList"
 import AnimalManager from "../modules/AnimalManager"
-import EmployeeManager from '../modules/EmployeeManager';
-import LocationManager from '../modules/LocationManager';
+import EmployeeManager from "../modules/EmployeeManager"
+import LocationManager from "../modules/LocationManager"
+import Login from "./auth/Login"
 
 
 export default class ApplicationViews extends Component {
@@ -32,6 +33,8 @@ export default class ApplicationViews extends Component {
             animals: animals
         }))
 
+    // Check if credentials are in local storage
+    isAuthenticated = () => localStorage.getItem("credentials") !== null
 
     componentDidMount() {
         const _state = {}
@@ -67,10 +70,15 @@ export default class ApplicationViews extends Component {
                     return <AnimalForm {...props} addAnimal={this.addAnimal} employees={this.state.employees} />
                 }} />
 
-
-                <Route exact path="/employees" render={(props) => {
-                    return <EmployeeList deleteEmployee={this.deleteEmployee} employees={this.state.employees} />
+                <Route exact path="/employees" render={props => {
+                    if (this.isAuthenticated()) {
+                        return <EmployeeList deleteEmployee={this.deleteEmployee} employees={this.state.employees} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
                 }} />
+
+                <Route path="/login" component={Login} />
             </React.Fragment>
         )
     }
