@@ -1,6 +1,17 @@
+.animalButton {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 0 10px 0;
+}
+
 .animals {
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.animalForm {
+    padding: 0 30px;
 }
 
 .icon--dog {
@@ -9,7 +20,8 @@
 }
 
 .card {
-    width: 10rem;
+    flex-basis: 23%;
+    margin-bottom: 0.75em;
 }
 
 .card-title {
@@ -17,9 +29,4 @@
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-}
-
-.card-link {
-    margin: 12px 0 0 0;
-    font-size: 0.7em;
 }

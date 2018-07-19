@@ -36,6 +36,11 @@ export default Object.create(AbstractManager, {
             return this.post("animals", resource)
         }
     },
+    addAndList: {
+        value: function (resource) {
+            return this.post("animals", resource).then(() => this.all())
+        }
+    },
     removeAndList: {
         value: function (id) {
             return this.delete("animals", id).then(() => this.all())
