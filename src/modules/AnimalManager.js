@@ -45,5 +45,16 @@ export default Object.create(AbstractManager, {
         value: function (id) {
             return this.delete("animals", id).then(() => this.all())
         }
+    },
+    edit: {
+        value: function (animal) {
+            return fetch(`${settings.remoteURL}/animals/${animal.id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(animal)
+            })
+        }
     }
 })

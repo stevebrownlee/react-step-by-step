@@ -13,7 +13,7 @@ export default class AnimalCard extends Component {
                             <img src={dog} className="icon--dog" />
                             {this.props.animal.name}
                             <Link className="nav-link" to={`/animals/${this.props.animal.id}`}>Details</Link>
-                            <a href="#"
+                            <a  href="# "
                                 onClick={() => this.props.deleteAnimal(this.props.animal.id)}
                                 className="card-link">Discharge</a>
                         </h5>

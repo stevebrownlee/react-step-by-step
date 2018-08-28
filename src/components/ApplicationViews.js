@@ -9,6 +9,7 @@ import AnimalManager from "../modules/AnimalManager"
 import EmployeeManager from "../modules/EmployeeManager"
 import LocationManager from "../modules/LocationManager"
 import Login from "./auth/Login"
+import AnimalEdit from "./animal/AnimalEdit";
 
 
 export default class ApplicationViews extends Component {
@@ -32,6 +33,8 @@ export default class ApplicationViews extends Component {
         .then(animals => this.setState({
             animals: animals
         }))
+
+    editAnimal = animal => AnimalManager.edit(animal)
 
     // Check if credentials are in local storage
     isAuthenticated = () => localStorage.getItem("credentials") !== null
@@ -65,6 +68,11 @@ export default class ApplicationViews extends Component {
                 }} />
                 <Route path="/animals/:animalId(\d+)" render={(props) => {
                     return <AnimalDetail {...props} deleteAnimal={this.deleteAnimal} animals={this.state.animals} />
+                }} />
+                <Route path="/animals/edit/:animalId(\d+)" render={(props) => {
+                    return <AnimalEdit {...props}
+                                        animals={this.state.animals}
+                                        editAnimal={this.editAnimal} />
                 }} />
                 <Route path="/animals/new" render={(props) => {
                     return <AnimalForm {...props} addAnimal={this.addAnimal} employees={this.state.employees} />
