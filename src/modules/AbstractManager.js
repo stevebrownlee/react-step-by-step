@@ -23,6 +23,17 @@ export default Object.create(null, {
             }).then(e => e.json())
         }
     },
+    edit: {
+        value: function (resource, resourceObject) {
+            return fetch(`${settings.remoteURL}/${resource}/${resourceObject.id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(resourceObject)
+            }).then(e => e.json())
+        }
+    },
     delete: {
         value: function (resource, id) {
             return fetch(`${settings.remoteURL}/${resource}/${id}`, {

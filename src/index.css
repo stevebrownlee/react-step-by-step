@@ -4,7 +4,7 @@ body {
   font-family: sans-serif;
 }
 
-.card-link {
+.card__link {
   margin: 12px 0 0 0;
   font-size: 0.7em;
 }

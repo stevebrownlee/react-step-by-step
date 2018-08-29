@@ -46,15 +46,9 @@ export default Object.create(AbstractManager, {
             return this.delete("animals", id).then(() => this.all())
         }
     },
-    edit: {
+    editAndList: {
         value: function (animal) {
-            return fetch(`${settings.remoteURL}/animals/${animal.id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(animal)
-            })
+            return this.edit("animals", animal).then(() => this.all())
         }
     }
 })

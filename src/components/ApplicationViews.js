@@ -4,12 +4,15 @@ import AnimalList from "./animal/AnimalList"
 import AnimalDetail from "./animal/AnimalDetail"
 import AnimalForm from "./animal/AnimalForm"
 import LocationList from "./location/LocationList"
-import EmployeeList from "./employee/EmployeeList"
 import AnimalManager from "../modules/AnimalManager"
 import EmployeeManager from "../modules/EmployeeManager"
 import LocationManager from "../modules/LocationManager"
 import Login from "./auth/Login"
 import AnimalEdit from "./animal/AnimalEdit";
+import ResourceList from "./generic/ResourceList";
+
+import person from "./employee/person.png"
+import building from "./location/building.png"
 
 
 export default class ApplicationViews extends Component {
@@ -34,7 +37,10 @@ export default class ApplicationViews extends Component {
             animals: animals
         }))
 
-    editAnimal = animal => AnimalManager.edit(animal)
+    editAnimal = animal => AnimalManager.editAndList(animal)
+        .then(animals => this.setState({
+            animals: animals
+        }))
 
     // Check if credentials are in local storage
     isAuthenticated = () => localStorage.getItem("credentials") !== null
@@ -59,7 +65,10 @@ export default class ApplicationViews extends Component {
                     return <LocationList locations={this.state.locations} />
                 }} />
                 <Route exact path="/locations" render={(props) => {
-                    return <LocationList locations={this.state.locations} />
+                    return <ResourceList listStyle="locations"
+                                  resourceList={this.state.locations}
+                                  resourceStyle="icon--building"
+                                  resourceImage={building} />
                 }} />
 
 
@@ -80,9 +89,13 @@ export default class ApplicationViews extends Component {
 
                 <Route exact path="/employees" render={props => {
                     if (this.isAuthenticated()) {
-                        return <EmployeeList deleteEmployee={this.deleteEmployee}
-                                             animals={this.state.animals}
-                                             employees={this.state.employees} />
+                        return <ResourceList listStyle="employees"
+                                  resourceList={this.state.employees}
+                                  resourceStyle="icon--person"
+                                  resourceImage={person}
+                                  additionalElement={
+                                    <button onClick={() => this.deleteEmployee()}>Hello</button>
+                                  } />
                     } else {
                         return <Redirect to="/login" />
                     }
