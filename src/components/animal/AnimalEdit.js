@@ -10,16 +10,13 @@ export default class AnimalEdit extends Component {
         animal: {}
     }
 
-    // Update state whenever an input field is edited
-    handleFieldChange = evt => this.setState({ [evt.target.id]: evt.target.value })
-
     editAnimal = evt => {
         evt.preventDefault()
 
         this.props.editAnimal({
             id: this.state.animal.id,
-            name: this.state.animalName,
-            breed: this.state.breed,
+            name: this.animalName.value,
+            breed: this.animalBreed.value,
             employeeId: this.state.animal.employeeId
         })
         .then(() => this.props.history.push("/animals"))
@@ -29,10 +26,11 @@ export default class AnimalEdit extends Component {
         const animal = this.props.animals.find(animal =>
             animal.id === parseInt(this.props.match.params.animalId, 10)) || {}
 
+        this.animalName.value = animal.name
+        this.animalBreed.value = animal.breed
+
         this.setState({
-            animalName: animal.name,
-            animal: animal,
-            breed: animal.breed
+            animal: animal
         })
     }
 
@@ -45,9 +43,7 @@ export default class AnimalEdit extends Component {
                         <input type="text"
                             required="true"
                             className="form-control"
-                            onChange={this.handleFieldChange}
-                            defaultValue={this.state.animal.name}
-                            id="animalName"
+                            ref={input => this.animalName = input}
                             placeholder="Animal name" />
                     </div>
                     <div className="form-group">
@@ -55,9 +51,7 @@ export default class AnimalEdit extends Component {
                         <input type="breed"
                             required="true"
                             className="form-control"
-                            onChange={this.handleFieldChange}
-                            defaultValue={this.state.animal.breed}
-                            id="breed"
+                            ref={input => this.animalBreed = input}
                             placeholder="Breed" />
                     </div>
                     <button type="submit"
