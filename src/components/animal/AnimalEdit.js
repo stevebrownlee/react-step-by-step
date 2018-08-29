@@ -39,7 +39,7 @@ export default class AnimalEdit extends Component {
     render() {
         return (
             <React.Fragment>
-                <form>
+                <form className="animalForm">
                     <div className="form-group">
                         <label htmlFor="animalName">Animal name</label>
                         <input type="text"
